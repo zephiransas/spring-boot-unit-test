@@ -4,15 +4,18 @@ buildscript {
 	}
 	repositories {
 		mavenCentral()
+		maven { url "https://plugins.gradle.org/m2/" }
 	}
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+		classpath "gradle.plugin.com.boxfuse.client:flyway-release:4.0"
 	}
 }
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'spring-boot'
+apply plugin: "org.flywaydb.flyway"
 
 jar {
 	baseName = 'demo'
@@ -30,6 +33,8 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-data-jpa')
 	compile('org.flywaydb:flyway-core')
 	compile('org.springframework.boot:spring-boot-starter-web')
-	runtime('org.postgresql:postgresql')
+//	runtime('org.postgresql:postgresql')
+	runtime "mysql:mysql-connector-java"
 	testCompile('org.springframework.boot:spring-boot-starter-test')
+	compile "org.springframework.boot:spring-boot-starter-thymeleaf:${springBootVersion}"
 }
