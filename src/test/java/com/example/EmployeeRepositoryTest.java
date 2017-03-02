@@ -1,16 +1,17 @@
 package com.example;
 
-import org.hamcrest.Matchers;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertThat;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = DemoApplication.class)
-public class EmployeeRepositoryTest {
+public class EmployeeRepositoryTest extends ApplicationTest {
 
     @Autowired
     EmployeeRepository repository;
@@ -23,7 +24,12 @@ public class EmployeeRepositoryTest {
         employee.setEmail("test@example.com");
         repository.save(employee);
 
-        Assert.assertThat(repository.findAll().size(), Matchers.is(2));
+        assertThat(repository.findAll().size(), is(1));
 
+    }
+
+    @Test
+    public void test2() throws Exception {
+        assertThat(10, is(10));
     }
 }
