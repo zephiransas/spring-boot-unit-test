@@ -25,3 +25,5 @@ nbdist/
 .nb-gradle/
 
 classes
+
+application-dev.yml
